@@ -1,0 +1,51 @@
+.timepast-wrapper {
+    position: relative;
+    padding: 5px;
+    width: 220px;
+    gap: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    color: #f79124;
+    font-weight: 600;
+    font-size: 0.8rem;
+    overflow: hidden;
+    background-color: #f1cdaf7c;
+    user-select: none;
+    cursor: pointer;
+    border: 1px solid rgba(0, 0, 0, 0.116);
+    transition:
+        background-color ease-in-out 0.2s,
+        transform ease-in-out 0.2s;
+}
+.timepast-wrapper:hover .refresh-icon {
+    animation: inf-rotate 1.8s infinite linear;
+}
+.timepast-wrapper .refresh-icon {
+    width: 20px;
+    height: 20px;
+}
+.timepast-wrapper:hover {
+    background-color: #f5bd8f7c;
+    transform: scale(1.02);
+}
+.timepast-wrapper.blocked {
+    cursor: not-allowed;
+}
+@keyframes inf-rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+@media (width < 650px) {
+    .timepast-wrapper {
+        width: 40px;
+    }
+    .timepast-wrapper span {
+        display: none;
+    }
+}

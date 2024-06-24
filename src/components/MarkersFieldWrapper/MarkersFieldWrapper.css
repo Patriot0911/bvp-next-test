@@ -1,0 +1,5 @@
+.marker {
+    position: absolute;
+    z-index: 300;
+    cursor: pointer;
+}

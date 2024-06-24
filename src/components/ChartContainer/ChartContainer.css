@@ -1,0 +1,39 @@
+.chart-container {
+    padding: 5px;
+    margin-top: 15px;
+    border-radius: 5px;
+    min-height: 400px;
+    position: relative;
+}
+.toolbar-container {
+    left: 0;
+    top: 100%;
+    gap: 10px;
+    width: 100%;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+}
+.toolbar-container .tool-item {
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    border-radius: 7px;
+    box-shadow: rgba(46, 45, 45, 0.281) 0px 5px 5px 2px;
+    background-color: rgba(0, 0, 0, 0);
+    transition:
+        transform ease-in-out 0.2s,
+        background-color ease-in-out 0.2s;
+    cursor: pointer;
+}
+.toolbar-container .tool-item:hover {
+    transform: scale(1.05);
+    background-color: rgba(228, 240, 240, 0.733);
+}
+.toolbar-container .tool-item svg {
+    width: 25px;
+    height: 25px;
+    color: rgb(0, 0, 0);
+}

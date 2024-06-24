@@ -1,0 +1,16 @@
+section.dashboard {
+    padding: 20px;
+    transform: scale(0.98);
+}
+
+.dashboard .action-bar {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+@media (width < 650px) {
+    section.dashboard {
+        padding: 0px;
+    }
+}

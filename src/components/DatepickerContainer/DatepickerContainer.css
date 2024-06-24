@@ -1,0 +1,10 @@
+.date-picker-container {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    width: fit-content;
+    border-radius: 7px;
+    transition: transform ease-in-out 0.2s;
+    padding: 2px;
+}

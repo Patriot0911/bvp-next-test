@@ -1,0 +1,62 @@
+.interval-select-wrapper {
+    position: relative;
+    padding: 5px;
+    width: 150px;
+    border-radius: 7px;
+    background-color: rgba(255, 255, 255, 0);
+    transition:
+        background-color ease-in-out 0.2s,
+        transform ease-in-out 0.2s;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+}
+.interval-select-wrapper label {
+    flex-grow: 1;
+    cursor: pointer;
+}
+.interval-select-wrapper:hover {
+    background-color: rgba(241, 248, 248, 0.733);
+    transform: scale(1.02);
+}
+ul.interval-list {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    position: absolute;
+    z-index: 2;
+    width: 150px;
+    bottom: 100%;
+    overflow: hidden;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+}
+li.interval-item {
+    list-style-type: none;
+    padding: 6px 20px;
+    cursor: pointer;
+    background-color: rgba(206, 212, 212, 0.733);
+    transition:
+        background-color ease-in-out 0.2s;
+}
+li.interval-item:hover {
+    background-color: rgba(228, 240, 240, 0.733);
+}
+
+@media (width < 650px) {
+    .interval-select-wrapper {
+        width: 50px;
+    }
+    ul.interval-list {
+        width: 100px;
+        left: 0;
+        border-radius: 15px;
+        border-bottom-left-radius: 0px;
+    }
+    li.interval-item {
+        padding: 0 5px;
+        background-color: rgba(213, 219, 219, 0.733);
+    }
+}
