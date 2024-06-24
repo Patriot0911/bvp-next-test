@@ -10,6 +10,7 @@ export interface IChartProps extends IChartContainerProps {
     isFilled: boolean;
     markerSize: number;
     isWithZoom: boolean;
+    isWithTips: boolean;
 };
 
 export interface IDataMarkers {

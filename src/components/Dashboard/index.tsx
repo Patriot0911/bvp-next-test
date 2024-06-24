@@ -20,12 +20,17 @@ const Dashboard = () => {
 
     const timer = useRef<any>(null);
 
-    const syncHandle = async () => {
-        if(isLoading)
-            return;
-        setIsLoading(true);
+    const updateTimer = (date: string) => {
         if(timer.current)
             clearTimeout(timer.current);
+        setLastUpdate(date);
+        timer.current = setTimeout(
+            syncHandle, 3 * 60 * 1000
+        );
+    };
+
+    const syncHandle = async () => {
+        setIsLoading(true);
         const searchOptions: ISearchParams = {
             startPeriod: firstDate,
             finishPeriod: secondDate,
@@ -39,20 +44,9 @@ const Dashboard = () => {
         updateTimer(new Date().toISOString());
     };
 
-    const updateTimer = (date: string) => {
-        setLastUpdate(date);
-        timer.current = setTimeout(
-            syncHandle, 1000 * 60 * 3
-        );
-    };
-
     useEffect(
         () => {
             const fetchHandle = async (signal?: AbortSignal) => {
-                if(!isLoading)
-                    setIsLoading(true);
-                if(timer.current)
-                    clearTimeout(timer.current);
                 const searchOptions: ISearchParams = {
                     startPeriod: firstDate,
                     finishPeriod: secondDate,
@@ -63,14 +57,17 @@ const Dashboard = () => {
                     setChartsData,
                     signal,
                 );
+                setIsLoading(false);
                 updateTimer(new Date().toISOString());
-                if(isLoading)
-                    setIsLoading(false);
             };
+            setIsLoading(true);
             const controller = new AbortController();
             const { signal } = controller;
             fetchHandle(signal);
-            return () => controller.abort('Unmount');
+            return () => {
+                controller.abort('Unmount');
+                setIsLoading(false);
+            };
         }, [interval, firstDate, secondDate]
     );
 

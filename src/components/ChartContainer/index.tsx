@@ -1,5 +1,6 @@
 'use client';
 
+import { RiInformationLine, RiInformationOffFill } from 'react-icons/ri';
 import MarkersFieldWrapper from '@/components/MarkersFieldWrapper';
 import { TbZoomScan, TbZoomScanFilled } from 'react-icons/tb';
 import { IChartContainerProps } from '@/libs/types/props';
@@ -16,6 +17,7 @@ const Chart = dynamic(
 
 const ChartContainer = ({ data, }: IChartContainerProps) => {
     const [isWithZoom, setIsWithZoom] = useState(false);
+    const [isWithTips, setIsWithTips] = useState(true);
     const [markerSize, setMarkerSize] = useState(25);
     const [isFilled, setIsFilled] = useState(true);
 
@@ -39,6 +41,12 @@ const ChartContainer = ({ data, }: IChartContainerProps) => {
         setMarkerSize(size);
     };
 
+    const withTipsHandle = () => {
+        setIsWithTips(
+            prevState => !prevState
+        );
+    };
+
     return (
         <div
             className={'chart-container border-style'}
@@ -50,6 +58,7 @@ const ChartContainer = ({ data, }: IChartContainerProps) => {
                 <Chart
                     data={data}
                     isFilled={isFilled}
+                    isWithTips={isWithTips}
                     isWithZoom={isWithZoom}
                     markerSize={markerSize}
                 />
@@ -68,9 +77,19 @@ const ChartContainer = ({ data, }: IChartContainerProps) => {
                     onClick={withZoomHandle}
                 >
                     {
-                        !isWithZoom ?
+                        isWithZoom ?
                         <TbZoomScan /> :
                         <TbZoomScanFilled />
+                    }
+                </div>
+                <div
+                    className={'tool-item'}
+                    onClick={withTipsHandle}
+                >
+                    {
+                        isWithTips ?
+                        <RiInformationLine /> :
+                        <RiInformationOffFill />
                     }
                 </div>
                 <div

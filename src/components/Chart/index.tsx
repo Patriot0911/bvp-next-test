@@ -13,7 +13,7 @@ const initDataMarkers = (): IDataMarkers => ({
     points: [],
 });
 
-const MyChart = ({ data, isFilled, isWithZoom, markerSize }: IChartProps) => {
+const MyChart = ({ data, isFilled, isWithZoom, markerSize, isWithTips }: IChartProps) => {
     const [lowerDataPoints, setLowerDataPoints] = useState<ICandleStickItem[]>([]);
     const [riseDataPoints, setRiseDataPoints] = useState<ICandleStickItem[]>([]);
     const [markedDataPoints, setMarkedDataPoints] = useState(initDataMarkers)
@@ -89,6 +89,9 @@ const MyChart = ({ data, isFilled, isWithZoom, markerSize }: IChartProps) => {
             gridThickness: 0.2,
             valueFormatString: "D MMM",
             margin: 10,
+        },
+        toolTip: {
+            enabled: isWithTips,
         },
         axisY2: {
             lineThickness: 0,
