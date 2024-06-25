@@ -34,3 +34,5 @@ export interface ILocalMarker {
     x: number;
     y: number;
 };
+
+export type TFetchResponse = Promise<IChartData | undefined>;

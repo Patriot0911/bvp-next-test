@@ -10,6 +10,7 @@ const DatepickerContainer = ({
     return (
         <div
             className={'date-picker-container border-style'}
+            data-testid={'datapicker'}
         >
             <Datepicker
                 max={secondDate}

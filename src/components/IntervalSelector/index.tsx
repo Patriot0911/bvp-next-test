@@ -41,6 +41,7 @@ const IntervalSelector = ({ interval, setInterval, }: IIntervalSelectorProps) =>
     return (
         <div
             className={'interval-select-wrapper border-style'}
+            data-testid={'interval-selector'}
         >
             <label
                 onClick={showHandle}

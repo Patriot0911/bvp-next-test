@@ -65,6 +65,7 @@ const ChartContainer = ({ data, }: IChartContainerProps) => {
             </MarkersFieldWrapper>
             <div
                 className={'toolbar-container'}
+                data-testid={'toolbar-container'}
             >
                 <div
                     className={'tool-item'}

@@ -100,6 +100,7 @@ const MarkersFieldWrapper = ({ children, isWithZoom, markerSize, }: IMarkersFiel
     return (
         <div
             className={'relative overflow-hidden'}
+            data-testid={'markersfield-container'}
         >
             {
                 markers.map(
