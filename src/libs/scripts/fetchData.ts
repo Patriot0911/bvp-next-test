@@ -6,18 +6,22 @@ const fetchData = async (
     setData?: TSetChartHandle,
     signal?: AbortSignal,
 ): Promise<IChartData | undefined> => {
-    const url = getFetchUrl(params);
-    const response = await fetch(url, {
-        signal,
-    });
-    if(!response)
-        throw new Error('Cannot find response');
-    const { data, message, state, } = await response.json();
-    if(!state)
-        throw new Error(message);
-    if(setData && !signal?.aborted)
-        setData(data);
-    return data;
+    try {
+        const url = getFetchUrl(params);
+        const response = await fetch(url, {
+            signal,
+        });
+        if(!response)
+            throw new Error('Cannot find response');
+        const { data, message, state, } = await response.json();
+        if(!state)
+            throw new Error(message);
+        if(setData && !signal?.aborted)
+            setData(data);
+        return data;
+    } catch(e) {
+        return;
+    };
 };
 
 export default fetchData;

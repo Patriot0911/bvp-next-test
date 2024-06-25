@@ -1,71 +1,31 @@
 'use client';
 
 import { useState } from 'react';
+import { Selector } from '@/components/ui';
 import { Intervals } from '@/libs/constants';
 import { ISelectOption } from '@/libs/types/global';
 import { IIntervalSelectorProps } from '@/libs/types/props';
 import './IntervalSelector.css';
 
-const getInitOptions = (): ISelectOption[] => ([
+const getInitOptions = (): ISelectOption<Intervals>[] => ([
     ...Object.keys(Intervals).map(
         item => {
             const key = item as keyof typeof Intervals;
             return {
-                name: item,
                 value: Intervals[key],
+                children: <>{key}</>,
             };
         }
     ),
 ]);
 
-const getInitSelected = (value: Intervals) => (): ISelectOption => ({
-    name: 'Days',
-    value,
-});
-
-const IntervalSelector = ({ interval, setInterval, }: IIntervalSelectorProps) => {
-    const [selected, setSelected] = useState<ISelectOption>(getInitSelected(interval));
-    const [options] = useState<ISelectOption[]>(getInitOptions);
-    const [isShown, setIsShown] = useState(false);
-
-    const showHandle = () => setIsShown(
-        prevState => !prevState
-    );
-
-    const setHandle = (item: ISelectOption) => () => {
-        showHandle();
-        setSelected(item);
-        setInterval(item.value);
-    };
-
+const IntervalSelector = ({ setInterval, }: IIntervalSelectorProps) => {
+    const [options] = useState<ISelectOption<Intervals>[]>(getInitOptions);
     return (
-        <div
-            className={'interval-select-wrapper border-style'}
-            data-testid={'interval-selector'}
-        >
-            <label
-                onClick={showHandle}
-            >
-                {selected.name}
-            </label>
-            <ul
-                className={'interval-list'}
-            >
-                {
-                    isShown && options.map(
-                        item => (
-                            <li
-                                className={'interval-item'}
-                                key={`${item.value}-interval-item`}
-                                onClick={setHandle(item)}
-                            >
-                                {item.name}
-                            </li>
-                        )
-                    )
-                }
-            </ul>
-        </div>
+        <Selector
+            options={options}
+            setValue={setInterval}
+        />
     );
 };
 

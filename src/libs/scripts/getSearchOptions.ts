@@ -1,4 +1,4 @@
-import { Intervals, defaultSearchOptions, } from '@/libs/constants';
+import { Intervals, cryptoList, defaultSearchOptions, } from '@/libs/constants';
 
 const getPeriodOptions = (startPeriod: string | null, finishPeriod: string | null) => {
     const options = {};
@@ -22,15 +22,21 @@ const getPeriodOptions = (startPeriod: string | null, finishPeriod: string | nul
 };
 
 const getSearchOptions = (query?: URLSearchParams): Partial<typeof defaultSearchOptions> => {
-    const options = {};
+    const options: Partial<typeof defaultSearchOptions> = { };
     if(!query)
         return defaultSearchOptions;
     const interval = query.get('interval');
+    const cryptoType = query.get('target');
     const startPeriod = query.get('startPeriod');
     const finishPeriod = query.get('finishPeriod');
     const periodOptions = getPeriodOptions(startPeriod, finishPeriod);
     if(Object.keys(periodOptions).length > 0)
         Object.assign(options, { ...periodOptions, });
+    if(cryptoType && typeof cryptoType === 'string') {
+        if(!cryptoList.includes(cryptoType))
+            throw Error('Unknown crypto type');
+        Object.assign(options, { target: cryptoType, })
+    }
     if(
         interval
         && typeof interval === 'string'

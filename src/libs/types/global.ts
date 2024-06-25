@@ -1,4 +1,5 @@
 import { Intervals } from '@/libs/constants';
+import { PropsWithChildren } from 'react';
 
 export interface IChartData {
     volume:     number;
@@ -23,11 +24,11 @@ export interface ISearchParams {
     startPeriod?: string;
     finishPeriod?: string;
     interval?: Intervals;
+    target?: string;
 };
 
-export interface ISelectOption {
-    name: string;
-    value: Intervals;
+export interface ISelectOption<Type> extends PropsWithChildren {
+    value: Type;
 };
 
 export interface ILocalMarker {

@@ -1,9 +1,9 @@
 'use client';
 
-import { ChartContainer, DatepickerContainer, IntervalSelector, TimePast, } from '@/components';
+import { ChartContainer, CryptocurrencySelector, DatepickerContainer, IntervalSelector, TimePast, } from '@/components';
 import { IChartData, ISearchParams } from '@/libs/types/global';
+import { Intervals, cryptoList } from '@/libs/constants';
 import { useState, useEffect, useRef } from 'react';
-import { Intervals } from '@/libs/constants';
 import { fetchData } from '@/libs/scripts';
 import './Dashboard.css';
 
@@ -16,6 +16,7 @@ const Dashboard = () => {
     const [firstDate, setFirstDate] = useState(getInitialFirstDate);
     const [chartsData, setChartsData] = useState<IChartData[]>([]);
     const [interval, setInterval] = useState(Intervals.Day);
+    const [cryptoType, setCryptoType] = useState(cryptoList[0]);
     const [isLoading, setIsLoading] = useState(true);
 
     const timer = useRef<any>(null);
@@ -29,13 +30,16 @@ const Dashboard = () => {
         );
     };
 
+    const getSearchOptions = (): ISearchParams => ({
+        startPeriod: firstDate,
+        finishPeriod: secondDate,
+        target: cryptoType,
+        interval,
+    });
+
     const syncHandle = async () => {
         setIsLoading(true);
-        const searchOptions: ISearchParams = {
-            startPeriod: firstDate,
-            finishPeriod: secondDate,
-            interval,
-        };
+        const searchOptions = getSearchOptions();
         await fetchData(
             searchOptions,
             setChartsData,
@@ -47,11 +51,7 @@ const Dashboard = () => {
     useEffect(
         () => {
             const fetchHandle = async (signal?: AbortSignal) => {
-                const searchOptions: ISearchParams = {
-                    startPeriod: firstDate,
-                    finishPeriod: secondDate,
-                    interval,
-                };
+                const searchOptions = getSearchOptions();
                 await fetchData(
                     searchOptions,
                     setChartsData,
@@ -68,7 +68,7 @@ const Dashboard = () => {
                 controller.abort('Unmount');
                 setIsLoading(false);
             };
-        }, [interval, firstDate, secondDate]
+        }, [interval, firstDate, secondDate, cryptoType]
     );
 
     return (
@@ -78,8 +78,10 @@ const Dashboard = () => {
             <div
                 className={'action-bar'}
             >
+                <CryptocurrencySelector
+                    setCryptocurrency={setCryptoType}
+                />
                 <IntervalSelector
-                    interval={interval}
                     setInterval={setInterval}
                 />
                 <DatepickerContainer

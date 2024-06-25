@@ -1,6 +1,6 @@
 import { Intervals } from '@/libs/constants';
 import { PropsWithChildren } from 'react';
-import { IChartData } from './global';
+import { IChartData, ISelectOption } from './global';
 
 export interface IChartContainerProps {
     data: IChartData[];
@@ -36,7 +36,6 @@ export interface IDatepickerProps {
 };
 
 export interface IIntervalSelectorProps {
-    interval: Intervals;
     setInterval: (arg: Intervals) => void;
 };
 
@@ -56,3 +55,8 @@ export interface IMarkersFieldWrapperProps extends PropsWithChildren {
     markerSize: number;
 };
 
+export interface ISelectorProps<T> {
+    className?: string;
+    setValue: (arg: T) => void;
+    options: ISelectOption<T>[];
+};
