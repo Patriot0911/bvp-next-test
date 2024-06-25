@@ -2,6 +2,8 @@ import { ISearchParams } from '@/libs/types/global';
 import { baseURL } from '@/libs/constants';
 
 const getFetchUrl = (params?: ISearchParams): string => {
+    if(!baseURL)
+        throw new Error('Cannot access to API url');
     const url = new URL(baseURL);
     if(!params)
         return baseURL;

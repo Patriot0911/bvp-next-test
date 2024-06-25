@@ -10,4 +10,5 @@ export const defaultSearchOptions = {
     interval: Intervals.Day,
 };
 
-export const baseURL = 'https://bvp-next-test-task.vercel.app/api'; //'http://localhost:3000/api';
+export const baseURL = process.env.NEXT_PUBLIC_PRODUCT === 'TRUE' ?
+    process.env.NEXT_PUBLIC_API_URL : process.env.NEXT_PUBLIC_DEV_API_URL;
