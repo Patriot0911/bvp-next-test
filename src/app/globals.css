@@ -11,6 +11,11 @@ main {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
+.dark {
+    background-color: red;
+    /* background-color: rgb(29, 28, 28); */
+}
+
 .border-style {
     border-radius: 2px;
     box-shadow: rgba(62, 61, 61, 0.162) 0px 5px 8px 2px;
