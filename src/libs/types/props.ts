@@ -6,7 +6,8 @@ export interface IChartContainerProps {
     data: IChartData[];
 };
 
-export interface IChartProps extends IChartContainerProps {
+export interface IChartProps {
+    data: IChartData[];
     isFilled: boolean;
     markerSize: number;
     isWithZoom: boolean;
@@ -59,4 +60,12 @@ export interface ISelectorProps<T> {
     className?: string;
     setValue: (arg: T) => void;
     options: ISelectOption<T>[];
+};
+
+export interface IThemeContextProviderProps extends PropsWithChildren {
+    init?: boolean;
+};
+
+export interface ICryptocurrencySelectorProps {
+    setCryptocurrency: (value: string) => void;
 };

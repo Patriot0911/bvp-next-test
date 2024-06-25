@@ -37,3 +37,8 @@ export interface ILocalMarker {
 };
 
 export type TFetchResponse = Promise<IChartData | undefined>;
+
+export interface IContextData {
+    isDarkTheme: boolean;
+    switchThemeHandle: () => void;
+};

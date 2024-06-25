@@ -5,7 +5,6 @@ import { Selector } from '@/components/ui';
 import { Intervals } from '@/libs/constants';
 import { ISelectOption } from '@/libs/types/global';
 import { IIntervalSelectorProps } from '@/libs/types/props';
-import './IntervalSelector.css';
 
 const getInitOptions = (): ISelectOption<Intervals>[] => ([
     ...Object.keys(Intervals).map(

@@ -4,7 +4,9 @@ import { RiInformationLine, RiInformationOffFill } from 'react-icons/ri';
 import MarkersFieldWrapper from '@/components/MarkersFieldWrapper';
 import { TbZoomScan, TbZoomScanFilled } from 'react-icons/tb';
 import { IChartContainerProps } from '@/libs/types/props';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useContext, useState } from 'react';
+import { FaMoon, FaSun } from 'react-icons/fa6';
+import { ThemeContext } from '@/libs/context';
 import { FaFillDrip } from 'react-icons/fa';
 import dynamic from 'next/dynamic';
 import './ChartContainer.css';
@@ -20,6 +22,11 @@ const ChartContainer = ({ data, }: IChartContainerProps) => {
     const [isWithTips, setIsWithTips] = useState(true);
     const [markerSize, setMarkerSize] = useState(25);
     const [isFilled, setIsFilled] = useState(true);
+
+    const {
+        isDarkTheme,
+        switchThemeHandle,
+    } = useContext(ThemeContext);
 
     const fillHandle = () => {
         setIsFilled(
@@ -67,6 +74,16 @@ const ChartContainer = ({ data, }: IChartContainerProps) => {
                 className={'toolbar-container'}
                 data-testid={'toolbar-container'}
             >
+                <div
+                    className={'tool-item'}
+                    onClick={switchThemeHandle}
+                >
+                    {
+                        isDarkTheme ?
+                        <FaMoon /> :
+                        <FaSun />
+                    }
+                </div>
                 <div
                     className={'tool-item'}
                     onClick={fillHandle}

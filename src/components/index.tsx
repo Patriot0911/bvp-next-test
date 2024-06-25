@@ -1,4 +1,5 @@
 import CryptocurrencySelector from './CryptocurrencySelector';
+import ThemeContextProvider from './ThemeContextProvider';
 import DatepickerContainer from './DatepickerContainer';
 import MarkersFieldWrapper from './MarkersFieldWrapper';
 import IntervalSelector from './IntervalSelector';
@@ -11,7 +12,8 @@ export {
     Dashboard,
     ChartContainer,
     IntervalSelector,
-    DatepickerContainer,
     MarkersFieldWrapper,
+    DatepickerContainer,
+    ThemeContextProvider,
     CryptocurrencySelector,
 };
