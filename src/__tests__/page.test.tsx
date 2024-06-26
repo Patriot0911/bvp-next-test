@@ -1,6 +1,7 @@
+import { render, screen } from '@testing-library/react';
+import ReduxProvider from '@/libs/redux/provider';
 import '@testing-library/jest-dom';
 import Home from '@/app/page';
-import { render, screen } from '@testing-library/react';
 
 global.fetch = jest.fn(() => Promise.resolve({
     json: () => Promise.resolve({
@@ -11,7 +12,11 @@ global.fetch = jest.fn(() => Promise.resolve({
 
 describe('Page elements', () => {
     it('primary elements', async () => {
-        render(<Home />);
+        render(
+            <ReduxProvider>
+                <Home />
+            </ReduxProvider>
+        );
         const elementNames = [
             'toolbar-container',
             'markersfield-container',

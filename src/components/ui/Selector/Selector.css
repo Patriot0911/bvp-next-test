@@ -46,6 +46,7 @@ li.select-item {
     cursor: pointer;
     background-color: rgba(221, 230, 230, 0.37);
     transition:
+        color ease-in-out 0.2s,
         background-color ease-in-out 0.2s;
 }
 li.select-item:hover {

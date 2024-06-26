@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { inter } from "@/libs/fonts";
 import { PropsWithChildren } from "react";
+import ReduxProvider from "@/libs/redux/provider";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -15,7 +16,9 @@ const RootLayout = ({ children, }: Readonly<PropsWithChildren>) => {
             <body
                 className={inter.className}
             >
-                {children}
+                <ReduxProvider>
+                    {children}
+                </ReduxProvider>
             </body>
         </html>
     );

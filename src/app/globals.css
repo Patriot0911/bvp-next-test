@@ -9,11 +9,12 @@ main {
     align-items: center;
     grid-template-columns: 1fr;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    background-color: rgba(0, 0, 0, 0);
+    transition: background-color ease-in-out 0.2s;
 }
 
 .dark {
-    background-color: red;
-    /* background-color: rgb(29, 28, 28); */
+    background-color: rgb(29, 28, 28);
 }
 
 .border-style {

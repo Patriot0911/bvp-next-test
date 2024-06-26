@@ -22,7 +22,7 @@ function Selector<ValueType>({ options, setValue, className, }: ISelectorProps<V
     return (
         <div
             className={`item-selector-wrapper border-style ${className}`}
-            data-testid={'interval-selector'}
+            data-testid={className ? className : 'selector'}
         >
             <label
                 onClick={showHandle}

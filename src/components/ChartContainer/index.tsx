@@ -2,12 +2,14 @@
 
 import { RiInformationLine, RiInformationOffFill } from 'react-icons/ri';
 import MarkersFieldWrapper from '@/components/MarkersFieldWrapper';
+import { switchTheme } from '@/libs/redux/features/theme-slice';
 import { TbZoomScan, TbZoomScanFilled } from 'react-icons/tb';
 import { IChartContainerProps } from '@/libs/types/props';
-import { ChangeEvent, useContext, useState } from 'react';
+import { useAppSelector } from '@/libs/redux/store';
+import { ChangeEvent, useState } from 'react';
 import { FaMoon, FaSun } from 'react-icons/fa6';
-import { ThemeContext } from '@/libs/context';
 import { FaFillDrip } from 'react-icons/fa';
+import { useDispatch } from 'react-redux';
 import dynamic from 'next/dynamic';
 import './ChartContainer.css';
 
@@ -23,10 +25,14 @@ const ChartContainer = ({ data, }: IChartContainerProps) => {
     const [markerSize, setMarkerSize] = useState(25);
     const [isFilled, setIsFilled] = useState(true);
 
-    const {
-        isDarkTheme,
-        switchThemeHandle,
-    } = useContext(ThemeContext);
+    const dispatch = useDispatch();
+    const themeState = useAppSelector(
+        selector => selector.themeReducer.isDarkTheme,
+    );
+
+    const switchThemeHandle = () => {
+        dispatch(switchTheme());
+    };
 
     const fillHandle = () => {
         setIsFilled(
@@ -79,7 +85,7 @@ const ChartContainer = ({ data, }: IChartContainerProps) => {
                     onClick={switchThemeHandle}
                 >
                     {
-                        isDarkTheme ?
+                        themeState ?
                         <FaMoon /> :
                         <FaSun />
                     }

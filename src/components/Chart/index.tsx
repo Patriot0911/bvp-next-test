@@ -16,7 +16,8 @@ const initDataMarkers = (): IDataMarkers => ({
 const MyChart = ({ data, isFilled, isWithZoom, markerSize, isWithTips }: IChartProps) => {
     const [lowerDataPoints, setLowerDataPoints] = useState<ICandleStickItem[]>([]);
     const [riseDataPoints, setRiseDataPoints] = useState<ICandleStickItem[]>([]);
-    const [markedDataPoints, setMarkedDataPoints] = useState(initDataMarkers)
+    const [markedDataPoints, setMarkedDataPoints] = useState(initDataMarkers);
+    const [lastClickedPoint, setLastClickedPoint] = useState<ICandleStickItem>();
 
     useEffect(
         () => {
@@ -66,8 +67,13 @@ const MyChart = ({ data, isFilled, isWithZoom, markerSize, isWithTips }: IChartP
         if(!isWithZoom)
             return;
         const { x, y } = e.dataPoint;
+        if(!lastClickedPoint || (lastClickedPoint.x !== x && lastClickedPoint.y !== y))
+            return setLastClickedPoint({
+                x,
+                y,
+            });
         const isInList = markedDataPoints.pointDates.includes(x);
-        if(isInList)
+        if(isInList && lastClickedPoint.x === x && lastClickedPoint.y === y)
             return removeMarker(x);
         addMarker(x, y);
     };

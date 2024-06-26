@@ -42,3 +42,7 @@ export interface IContextData {
     isDarkTheme: boolean;
     switchThemeHandle: () => void;
 };
+
+export interface IThemeInitState {
+    isDarkTheme: boolean;
+};
