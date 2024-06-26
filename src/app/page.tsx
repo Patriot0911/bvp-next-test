@@ -10,6 +10,7 @@ const Home = () => {
     return (
         <main
             className={themeState ? 'dark' : ''}
+            data-testid={'main'}
         >
             <Dashboard />
         </main>

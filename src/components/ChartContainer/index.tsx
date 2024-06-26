@@ -82,6 +82,7 @@ const ChartContainer = ({ data, }: IChartContainerProps) => {
             >
                 <div
                     className={'tool-item'}
+                    data-testid={'dark-theme-switch'}
                     onClick={switchThemeHandle}
                 >
                     {

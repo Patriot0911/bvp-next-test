@@ -5,7 +5,9 @@
     position: relative;
     width: fit-content;
     border-radius: 7px;
-    transition: transform ease-in-out 0.2s;
+    transition:
+        transform ease-in-out 0.2s,
+        background-color ease-in-out 0.2s;
     padding: 2px;
 }
 

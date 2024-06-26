@@ -33,4 +33,12 @@ describe('Search Query parser', () => {
         const searchOptions = getSearchOptions(queryString);
         expect(searchOptions).toStrictEqual(defaultSearchOptions);
     });
+    it('Crypto type validation', () => {
+        const params = {
+            target: 'Unknown target',
+        };
+        const queryString = new URLSearchParams(params);
+        const searchOptions = () => getSearchOptions(queryString);
+        expect(searchOptions).toThrow('Unknown crypto type');
+    });
 });
