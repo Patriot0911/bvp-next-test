@@ -15,3 +15,6 @@ export const defaultSearchOptions = {
     interval: Intervals.Day,
     target:   cryptoList[0],
 };
+
+export const refreshTime = (!process.env.NEXT_PUBLIC_TIMEOUT_SEC || isNaN(parseInt(process.env.NEXT_PUBLIC_TIMEOUT_SEC)) ?
+    180 : parseInt(process.env.NEXT_PUBLIC_TIMEOUT_SEC));

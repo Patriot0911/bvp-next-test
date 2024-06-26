@@ -1,8 +1,8 @@
 'use client';
 
 import { ChartContainer, CryptocurrencySelector, DatepickerContainer, IntervalSelector, TimePast, } from '@/components';
+import { Intervals, cryptoList, refreshTime } from '@/libs/constants';
 import { IChartData, ISearchParams } from '@/libs/types/global';
-import { Intervals, cryptoList } from '@/libs/constants';
 import { useState, useEffect, useRef } from 'react';
 import { fetchData } from '@/libs/scripts';
 import './Dashboard.css';
@@ -26,7 +26,7 @@ const Dashboard = () => {
             clearTimeout(timer.current);
         setLastUpdate(date);
         timer.current = setTimeout(
-            syncHandle, 3 * 60 * 1000
+            syncHandle, refreshTime * 1000
         );
     };
 
